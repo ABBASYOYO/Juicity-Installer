@@ -82,11 +82,14 @@ read -p "Enter listen port (or press enter to randomize): " PORT
 read -p "Enter password: " PASSWORD
 UUID=$(uuidgen)
 
+# Get Common Name from user
+read -p "Enter Common Name for the certificate (e.g., yourdomain.com): " COMMON_NAME
+
 # Generate private key
 openssl ecparam -genkey -name prime256v1 -out /root/juicity/private.key
 
 # Generate certificate using the private key
-openssl req -new -x509 -days 36500 -key /root/juicity/private.key -out /root/juicity/fullchain.cer -subj "/CN=www.speedtest.net"
+openssl req -new -x509 -days 36500 -key /root/juicity/private.key -out /root/juicity/fullchain.cer -subj "/CN=$COMMON_NAME"
 
 cat > /root/juicity/config.json <<EOL
 {
