@@ -52,7 +52,7 @@ echo ""
 
 # Install required packages
 sudo apt-get update
-sudo apt-get install -y unzip jq uuid-runtime openssl
+sudo apt-get install -y unzip jq uuid-runtime
 
 # Detect OS and download the corresponding release
 OS=$(uname -s)
@@ -100,8 +100,7 @@ cat > /root/juicity/config.json <<EOL
   "certificate": "/root/juicity/fullchain.cer",
   "private_key": "/root/juicity/private.key",
   "congestion_control": "bbr",
-  "log_level": "info",
-  "allow_insecure": true
+  "log_level": "info"
 }
 EOL
 
